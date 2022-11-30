@@ -1,4 +1,4 @@
-# how to set up
+# [0] How to set up
 
 ## Install
 
@@ -10,10 +10,11 @@
 
 4. Fill in apis / private key in `.env` file. You can choose either **Goerli Testnet** or **Mumbai Testnet**  
 
+<br>
 
-# 1. Simple Upgrade with hardhat
+# [1] Simple Upgrade with hardhat
 
-## 1) Deploy upgradeable contract
+## 1. Deploy upgradeable contract
 
 ### Using Goerli Testnet
 
@@ -75,7 +76,9 @@ click `More Options` > `Is this a proxy?` > `verify`.
 
 Now you will be able to read the storage variable `val`
 
-## 2) Upgrade Logic Contract to BoxV2
+<br>
+
+## 2. Upgrade Logic Contract to BoxV2
 
 ### Using Goerli Testnet
 
@@ -91,11 +94,13 @@ Verify again just like you previously did, and you will be able to call `inc()` 
 
 After calling `inc()`, you can see `val` is updated from `42` to `43`.
 
-# 2. Unsafe Code 
+<br>
+
+# [2] Unsafe Code 
 
 ## 1. Do not use `constructor`
 
-### Use `initialize` function instead
+### use `initialize` function instead
 
 You shouldn't use constructor to initalize storage variables when deploying upgradeable contract.
 
@@ -117,7 +122,10 @@ You can use both `constructor` and `immutable` variable by adding each of these 
 
 or
 
-`npx hardhat run scripts/upgrade_box_v2.js --network goerli`
+`npx hardhat run scripts/upgrade_box_v2.js --network goerli`  
+
+<br>
+
 ## 2. Do not reorder storage variables
 
 Code in `UnsafeV2` contract is basically all same as `UnsafeV1`.
@@ -150,6 +158,7 @@ OpenZeppelin upgradeable tool throws error you if you changed the order of stora
 ### note
 Adding new storage variables after **original storage variables** is totally fine.
 
+<br>
 
 ## 3. Do not use selfdestruct
 
