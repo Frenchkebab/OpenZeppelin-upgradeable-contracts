@@ -1,5 +1,13 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.16;
+pragma solidity 0.8.10;
+
+/*
+proxy --> implementation
+  ^
+  |
+  |
+proxy admin
+*/
 
 contract Box {
     uint256 public val;
