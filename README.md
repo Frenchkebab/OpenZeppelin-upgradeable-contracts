@@ -90,3 +90,67 @@ This updates the **Logic Contract** from `Box` to `BoxV2`.
 Verify again just like you previously did, and you will be able to call `inc()` function.
 
 After calling `inc()`, you can see `val` is updated from `42` to `43`.
+
+# 2. Unsafe Code 
+
+## 1. Do not use `constructor`
+
+### Use `initialize` function instead
+
+You shouldn't use constructor to initalize storage variables when deploying upgradeable contract.
+
+You must use `initialize` function instead.
+
+However in `UnsafeV1.sol`, it only initalizes `immutable` variable which just becomes part of the code of the contract.
+
+You can use both `constructor` and `immutable` variable by adding each of these comments above each line.
+
+* `/// @custom:oz-upgrades-unsafe-allow constructor`
+
+* `/// @custom:oz-upgrades-unsafe-allow state-variable-immutable`
+
+(Check out openzeppelin doccument: https://docs.openzeppelin.com/upgrades-plugins/1.x/faq)
+
+### run scripts
+
+`npx hardhat run scripts/upgrade_box_v2.js --network mumbai`
+
+or
+
+`npx hardhat run scripts/upgrade_box_v2.js --network goerli`
+## 2. Do not reorder storage variables
+
+Code in `UnsafeV2` contract is basically all same as `UnsafeV1`.
+
+Only the order of two state variables `owner` and `val` differs from `UnsafeV1`.  
+
+In the original contracct, sotrage variable `owner` was at **slot 0** and `val` was at **slot 1**.  
+
+And in `UnsafeV2` contract, their order changed.  
+
+So if you try to update `val`'s value via `UnsafeV2`, value of `owner`in **Proxy** contract will be changed.
+
+### run script
+
+`npx hardhat run scripts/upgrade_unsafe_v2.js --network goerli`
+
+or
+
+`npxhardhat run scripts/upgrade_unsafe_v2.js --network mumbai`
+
+### result
+
+```
+Error: New storage layout is incompatible
+```
+
+OpenZeppelin upgradeable tool throws error you if you changed the order of storage variables.
+
+
+### note
+Adding new storage variables after **original storage variables** is totally fine.
+
+
+## 3. Do not use selfdestruct
+
+If you run `selfdestruct` operation from the **Logic** contract, **Proxy** contract can no longer use it's implementation.

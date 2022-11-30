@@ -9,6 +9,11 @@
       "address": "0xa81Ef777305c924fB7bA26B7D5bb990ca8C1D423",
       "txHash": "0x4ca0347be871a1232d986b441ae83854e4569eaf9f70ea235d5a46625127eee1",
       "kind": "transparent"
+    },
+    {
+      "address": "0xBc6897511666833a6ce9C6e80DDD39fA5D4E93c5",
+      "txHash": "0xa8d0b5fcc7897f5cd1d954c112a3c791ccfca09a5d2e70b31cf829b610706ee7",
+      "kind": "transparent"
     }
   ],
   "impls": {
@@ -54,6 +59,74 @@
           "t_uint256": {
             "label": "uint256",
             "numberOfBytes": "32"
+          }
+        }
+      }
+    },
+    "20a9208874fcbe85515336a404400ab8adba08eb9cadefe379072b668286f492": {
+      "address": "0x4A9052172530c13732773adBdfBc04FA90A365bf",
+      "txHash": "0x85eac955e6b30a558e5cdc68373f1cea6a85759f67f135e99037def6325476f1",
+      "layout": {
+        "solcVersion": "0.8.10",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "owner",
+            "offset": 2,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "UnsafeV1",
+            "src": "contracts/UnsafeV1.sol:21"
+          },
+          {
+            "label": "val",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256",
+            "contract": "UnsafeV1",
+            "src": "contracts/UnsafeV1.sol:22"
+          },
+          {
+            "label": "start",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256",
+            "contract": "UnsafeV1",
+            "src": "contracts/UnsafeV1.sol:23"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
           }
         }
       }
